@@ -1,4 +1,4 @@
-# HeyEpicFirmware
+# HeyPlus Firmware
 [2020-04-14] RUv15.36
 + save settings sleep/data monitor
 + save settings alarm interval
