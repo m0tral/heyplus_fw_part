@@ -7,6 +7,16 @@
 [2020-03-03] RUv15.34
 + leap year date fix
 
+[2020-02-03] RUv15.32
++ settings menu: new sorting order
++ added distance correction coef
+
+[2020-01-15] RUv15.31
+* sleep fix
++ new lock method: by code (static: 132)
++ added lock type switch
++ added flashlight
+
 [2018-06-25] RUv14.44
 + added Roboto Bold 72 Clock font for surfaces
 
