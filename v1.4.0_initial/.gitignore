@@ -1,0 +1,17 @@
+/proj/keil/JLinkLog.txt
+SI4
+
+# User-specific uVision files
+*.opt
+*.uvopt
+*.uvoptx
+*.uvgui
+*.uvgui.*
+*.uvguix.*
+
+# Generated output files
+Listings/
+Objects/
+bin/
+
+!/bsp/apollo2/mcu/hal/keil/bin

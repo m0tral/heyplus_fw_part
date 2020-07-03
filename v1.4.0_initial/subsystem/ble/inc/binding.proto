@@ -1,0 +1,19 @@
+// Ryeex BLE protocol
+
+syntax = "proto2";
+
+option java_package = "com.ryeex.groot.frame.ble.stack.pb.entity";
+
+option java_outer_classname = "Binding";
+
+message UnBindToken {
+    required string did = 1;
+    required int32 sn = 2;
+    required bytes sign = 3;
+    required int32 sign_ver = 4;
+}
+
+message BindAck {
+    required int32 error = 1;
+    optional string uid = 2;
+}

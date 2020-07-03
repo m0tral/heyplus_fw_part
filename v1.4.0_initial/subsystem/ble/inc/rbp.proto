@@ -1,0 +1,152 @@
+// Ryeex BLE protocol
+
+syntax = "proto2";
+
+option java_package = "com.ryeex.groot.lib.ble.stack.pb.entity";
+
+option java_outer_classname = "PBRbp";
+
+enum CMD {
+    // Profile
+    PROP_GET = 0; //获取prop, 加密, 参数(RbpMsg_Req(PropGetParam)), 返回RbpMsg_Res
+    PROP_SET = 1; //设置prop
+    PROP_SUBSCRIBE = 2;//订阅prop
+    PROP_DATA = 3;//订阅的prop值
+    PROP_EVENT = 4; //事件
+
+    // Protocols
+    // Device接口
+    DEV_GET_DEV_STATUS = 5; //获取设备状态, 不加密, 参数(无), 返回(RbpMsg_Res(DeviceStatus))
+    DEV_GET_DEV_INFO = 6; //获取设备信息, 加密, 参数(无), 返回(RbpMsg_Res(DeviceInfo))
+    DEV_GET_DEV_CREDENTIAL = 7; //获取设备身份凭证, 加密, 参数(无), 返回(RbpMsg_Res(DeviceCredential))
+    DEV_GET_DEV_UNBIND_TOKEN = 8; //获取如一解绑Token, 不加密, 参数(无), 返回(RbpMsg_Res(DeviceUnBindToken))
+    DEV_GET_DEV_RUN_STATE = 9; //获取设备运行状态, 加密, 参数(无), 返回(RbpMsg_Res(DeviceRunState))
+    DEV_GET_DEV_MI_UNBIND_TOKEN = 10; //获取米家解绑Token, 不加密, 参数(无), 返回(RbpMsg_Res(DeviceMiUnBindToken))
+    DEV_GET_DEV_MI_RYEEX_DID_TOKEN = 11; //获取米家如一did关联Token, 不加密, 参数(无), 返回(RbpMsg_Res(DeviceMiRyeexDidToken))
+    DEV_ACTIVATE_SE_START = 20; //开始SE激活, 不加密， 参数(无), 返回(RbpMsg_Res(0:成功))
+    DEV_ACTIVATE_SE_RESULT = 21; //SE激活结果, 不加密， 参数(SeActivateResult), 返回(RbpMsg_Res(0:成功))
+    DEV_ACTIVATE_RYEEX_CERT_START = 22; //开始Ryeex证书激活, 不加密， 参数(无), 返回(RbpMsg_Res(0:成功))
+    DEV_ACTIVATE_RYEEX_CERT_SESSION_KEY = 23; //Ryeex证书激活的SessionKey, 不加密， 参数(RbpMsg_Req(SessionKey字节流)), 返回(RbpMsg_Res(0:成功))
+    DEV_ACTIVATE_MI_CERT_START = 24; //开始米家证书激活, 不加密， 参数(无), 返回(RbpMsg_Res(0:成功))
+    DEV_ACTIVATE_MI_CERT_SESSION_KEY = 25; //米家证书激活的SessionKey, 不加密， 参数(RbpMsg_Req(SessionKey字节流)), 返回(RbpMsg_Res(0:成功))
+    DEV_BIND_ACK_START = 30; //绑定确认, 不加密, 参数(无), 返回(RbpMsg_Res(0:成功))
+    DEV_BIND_RESULT = 31; //绑定结果, 加密, 参数(RbpMsg_Req(BindResult)), 返回(无)
+    DEV_UNBIND = 32; //解绑如一, 加密/不加密, 参数(加密:无, 不加密:RbpMsg_Req(ServerUnBindToken)), 返回(加密无返回，不加密返回RbpMsg_Res(0:成功))
+    DEV_BIND_ACK_CANCEL = 33; //取消绑定确认，不加密，参数（无），返回(RbpMsg_Res(0:成功))
+    DEV_MI_UNBIND = 34; //解绑米家, 加密/不加密, 参数(加密:无, 不加密:RbpMsg_Req(ServerMiUnBindToken)), 返回(加密无返回，不加密返回RbpMsg_Res(0:成功))
+    DEV_RYEEX_BIND_BY_TOKEN = 35; //通过Token绑定如一, 不加密, 参数(RbpMsg_Req(ServerRyeexBindToken)), 返回(RbpMsg_Res(0:成功))
+    DEV_FW_UPDATE_TOKEN = 40; //固件更新Token(开始更新), 不加密, 参数(RbpMsg_Req(ota_token字节流)), 返回(RbpMsg_Res(FwUpdateTokenResult))
+    DEV_FW_UPDATE_START = 41; //开始固件更新, 加密, 参数(RbpMsg_Req(FwUpdateInfo)), 返回(RbpMsg_Res(FwUpdateStartResult))
+    DEV_FW_UPDATE_FILE = 42; //固件更新数据, 不加密, 参数(RbpMsg_Req(固件文件bytes)), 返回(RbpMsg_Res(0:成功))
+    DEV_FW_UPDATE_STOP = 43; //停止固件更新, 加密, 参数(无), 返回(RbpMsg_Res(0:成功))
+    DEV_GATE_START_CHECK = 50;//开始检测门禁卡，加密， 参数(无), 返回(RbpMsg_Res(0:成功))
+    DEV_GATE_START_CREATE = 51;//开始创建门禁卡，加密， 参数(GateCreateParam), 返回(RbpMsg_Res(0:成功))
+    DEV_GATE_CREATE_ACK = 52;//创建门禁卡确认，加密， 参数(GateCreateAck(0:成功)), 返回(RbpMsg_Res(0:成功))
+    DEV_GATE_GET_INFO_LIST = 53;//获取门禁卡信息列表, 加密，参数(无), 返回(RbpMsg_Res(GetGateInfoListResult))
+    DEV_GATE_SET_INFO = 54;//设置门禁卡信息, 加密，参数(GateCardInfo), 返回(RbpMsg_Res(0:成功))
+    DEV_GATE_START_DELETE = 55;//开始删除门禁卡，加密， 参数(GateDeleteParam), 返回(RbpMsg_Res(0:成功))
+    DEV_GATE_DELETE_ACK = 56;//删除门禁卡确认，加密， 参数(GateDeleteAck), 返回(无)
+    DEV_TRANSIT_START_CREATE = 60;//开始创建交通卡，加密， 参数(TransitCreateParam), 返回(RbpMsg_Res(0:成功))
+    DEV_TRANSIT_CREATE_ACK = 61;//创建交通卡确认，加密， 参数(TransitCreateAck(0:成功)), 返回(RbpMsg_Res(0:成功))
+    DEV_TRANSIT_RECHARGE_START = 62;//开始充值，加密， 参数(TransitRechargeParam), 返回(RbpMsg_Res(0:成功))
+    DEV_TRANSIT_RECHARGE_ACK = 63;//充值确认，加密， 参数(TransitRechargeAck), 返回(RbpMsg_Res(0:成功))
+    DEV_WEATHER_GET_CITY_LIST = 70;//获取天气城市列表，加密， 参数(无), 返回(RbpMsg_Res(WeatherCityList))
+    DEV_WEATHER_SET_CITY_LIST = 71;//设置天气城市列表，加密， 参数(WeatherCityList), 返回(RbpMsg_Res(0:成功))
+    DEV_ALARM_CLOCK_GET_LIST = 80;//获取闹钟列表，加密， 参数(无), 返回(RbpMsg_Res(AlarmClockList))
+    DEV_ALARM_CLOCK_SET = 81;//设置闹钟，加密， 参数(AlarmClockItem), 返回(RbpMsg_Res(0:成功))
+    DEV_ALARM_CLOCK_DELETE = 82;//删除闹钟，加密， 参数(AlarmClockDeleteItem), 返回(RbpMsg_Res(0:成功))
+    DEV_SE_OPEN = 90; //打开SE, 加密， 参数(无), 返回(RbpMsg_Res(0:成功))
+    DEV_SE_CLOSE = 91; //关闭SE, 加密， 参数(无), 返回(RbpMsg_Res(0:成功))
+    DEV_SE_EXECUTE_APDU = 92; //执行apdu指令, 加密， 参数(RbpMsg_Req(apdu字节流)), 返回(RbpMsg_Res(0:成功, ApduResult))
+    DEV_SE_EXECUTE_APDU_OPEN = 93; //执行apdu指令, 不加密， 参数(RbpMsg_Req(apdu字节流)), 返回(RbpMsg_Res(0:成功, ApduResult))
+    DEV_SURFACE_GET_LIST = 100; //获取表盘列表, 加密， 参数(无), 返回(RbpMsg_Res(SurfaceList))
+    DEV_SURFACE_ADD_START = 101; //开始添加表盘, 加密， 参数(SurfaceAddStartParam), 返回(RbpMsg_Res(0:成功))
+    DEV_SURFACE_ADD_DATA = 102; //添加表盘的数据，加密，参数(表盘数据文件bytes),返回(RbpMsg_Res(0:成功))
+    DEV_SURFACE_DELETE = 103; //删除表盘, 加密， 参数(SurfaceDeleteParam), 返回(RbpMsg_Res(0:成功))
+    DEV_SURFACE_SET_CURRENT = 104; //设置当前表盘, 加密， 参数(SurfaceSetCurrentParam), 返回(RbpMsg_Res(0:成功))
+    DEV_CARD_SET_DEFAULT = 105;//设置默认卡，加密，参数（DefaultCardInfo）,返回(RbpMsg_Res(0:成功))
+    DEV_CARD_GET_DEFAULT = 106;//获取默认卡，加密，参数（无）,返回(RbpMsg_Res(DefaultCardInfo))
+    DEV_APP_GET_LIST = 200; //获取app列表, 加密， 参数(无), 返回(RbpMsg_Res(DevAppList))
+    DEV_APP_SET_LIST = 201; //设置app列表, 加密， 参数(DevAppList), 返回(RbpMsg_Res(0:成功))
+    DEV_NOTIFICATION = 210;// 消息提醒，加密，参数(无)，返回(RbpMsg_Res(0:成功))
+    DEV_NOTIFICATION_GET_SETTING = 211;// 获取消息提醒的设置，加密，参数(无)，返回(NotificationSetting)
+    DEV_NOTIFICATION_SET_SETTING = 212;// 设置消息提醒的设置，加密，参数(NotificationSetting)，返回(RbpMsg_Res(0:成功))
+    DEV_LOG_START = 220;//开始获取日志，加密，参数(无)，返回(RbpMsg_Res(DevLogStartResult))
+    DEV_MI_SCENE_GET_LIST = 230;//获取米家场景, 加密, 参数(无), 返回(RbpMsg_Res(MiSceneList))
+    DEV_MI_SCENE_ADD = 231;//添加米家场景，加密， 参数(MiSceneItem), 返回(RbpMsg_Res(0:成功))
+    DEV_MI_SCENE_ADD_BATCH = 232;//批量添加米家场景，加密， 参数(MiSceneList), 返回(RbpMsg_Res(0:成功))
+    DEV_MI_SCENE_MODIFY = 233;//修改米家场景，加密， 参数(MiSceneItem), 返回(RbpMsg_Res(0:成功))
+    DEV_MI_SCENE_DELETE = 234;//删除米家场景，加密， 参数(MiSceneDeleteParam), 返回(RbpMsg_Res(0:成功))
+    DEV_MI_SCENE_DELETE_ALL = 235;//删除所有场景，加密， 参数(无), 返回(RbpMsg_Res(0:成功))
+    DEV_SET_TIME = 900; //设置时间, 加密, 参数(RbpMsg_Req(int32)), 返回(RbpMsg_Res(0:成功))
+    DEV_UPLOAD_DATA_START = 901;// 开始获取上报的数据，加密，参数(无)，返回(RbpMsg_Res(UploadDataStartParam))
+    DEV_START_LOCATION_RESULT = 902;//异步定位结果，加密， 参数(RbpMsg_Req(LocationResult)), 返回(RbpMsg_Res(0:成功))
+    DEV_UPLOAD_FILE = 903; //上传文件, 不加密, 参数(RbpMsg_Req(UploadFileMeta.bytes+"12344321".bytes+file_content.bytes)), 返回(RbpMsg_Res(0:成功))
+    DEV_SET_PHONE_APP_INFO = 904; //设置手机App信息, 加密, 参数(RbpMsg_Req(PhoneAppInfo)), 返回(RbpMsg_Res(0:成功))
+
+    // App接口
+    APP_ACTIVATE_RYEEX_CERT_RESULT = 1000; //Ryeex证书的激活结果, 不加密, 参数(RbpMsg_Req(RyeexCertActivateResult)), 返回(RbpMsg_Res(0:成功))
+    APP_ACTIVATE_MI_CERT_RESULT = 1001; //米家证书的激活结果, 不加密, 参数(RbpMsg_Req(MiCertActivateResult)), 返回(RbpMsg_Res(0:成功))
+    APP_UNBIND = 1002; //解绑, 返回(RbpMsg_Res(0:成功))
+    APP_UPLOAD_DATA_LOCAL = 1003;//向app上报数据, 加密, 参数(DataSet), 返回(RbpMsg_Res(0:成功))
+    APP_UPLOAD_DATA_REMOTE = 1004;//Deprcated, 向服务器上报数据, 加密, 参数(无), 返回(RbpMsg_Res(0:成功))
+    APP_START_LOCATION_REQUEST = 1005;//定位, 加密, 参数(RbpMsg_Req(LocationRequest)),返回(RbpMsg_Res(0:成功))
+    APP_GATE_CHECK_RESULT = 1006;//检测门禁卡结果，加密， 参数(RbpMsg_Req(GateCheckResult)), 返回(RbpMsg_Res(0:成功))
+    APP_WEATHER_GET_REALTIME_INFO = 1007;//获取天气实时信息(Deprecated)，加密， 参数(RbpMsg_Req(WeatherGetRealtimeInfoParam)), 返回(RbpMsg_Res(WeatherGetRealtimeInfoResult))
+    APP_WEATHER_GET_FORECAST_INFO = 1008;//获取天气预测信息(Deprecated)，加密， 参数(RbpMsg_Req(WeatherGetForecastInfoParam)), 返回(RbpMsg_Res(WeatherGetForecastInfoResult))
+    APP_NOTIFICATION_ANSWER_CALL = 1009; //接听电话, 加密, 参数(RbpMsg_Req(NotificationAnswerCallParam)) 返回(RbpMsg_Res(0:成功))
+    APP_NOTIFICATION_REJECT_CALL = 1010; //挂断电话, 加密, 参数(RbpMsg_Req(NotificationRejectCallParam)) 返回(RbpMsg_Res(0:成功))
+    APP_BLE_CONN_INTERVAL = 1011;//蓝牙连接间隔, 加密, 参数(RbpMsg_Req(BleConnIntervalParam)), 返回(RbpMsg_Res(0:成功))
+    APP_WEATHER_GET_INFO = 1012;//获取天气信息，加密， 参数(RbpMsg_Req(WeatherGetInfoParam)), 返回(RbpMsg_Res(WeatherGetInfoResult))
+    APP_BIND_ACK_RESULT = 1013;//用户绑定确认结果, 不加密, 参数(BindAckResult), 返回(无)
+    APP_SPORT_RUN_START = 1020;//开始跑步，加密， 参数(RbpMsg_Req(SportRunStartParam)), 返回(RbpMsg_Res(0:成功))
+    APP_SPORT_RUN_UPDATE = 1021;//更新跑步，加密， 参数(RbpMsg_Req(SportRunUpdateParam)), 返回(RbpMsg_Res(SportRunUpdateResult))
+    APP_SPORT_RUN_PAUSE = 1022;//暂停跑步，加密， 参数(RbpMsg_Req(SportRunPauseParam)), 返回(RbpMsg_Res(0:成功))
+    APP_SPORT_RUN_RESUME = 1023;//恢复跑步，加密， 参数(RbpMsg_Req(SportRunResumeParam)), 返回(RbpMsg_Res(0:成功))
+    APP_SPORT_RUN_STOP = 1024;//停止跑步，加密， 参数(RbpMsg_Req(SportRunStopParam)), 返回(RbpMsg_Res(0:成功))
+    APP_LOG_DATA = 1030;//日志数据，加密， 参数(RbpMsg_Req(DevLogData)), 返回(RbpMsg_Res(0:成功))
+
+    // 测试接口
+    TEST_DEV_START_GSENSOR = 2000; //开始gsensor, 不加密, 返回(0:成功)
+    TEST_DEV_END_GSENSOR = 2001; //停止gsensor, 不加密, 返回(0:成功)
+    TEST_DEV_SEND_APDU = 2002; //发送apdu指令, 不加密, 参数(RbpMsg_Req(apdu字节流)), 返回(RbpMsg_Res(0:成功, ApduResult))
+}
+
+message RbpMsg {
+    required int32 protocol_ver = 1; // 协议版本号
+    required CMD cmd = 2;
+    optional int32 session_id = 3;
+
+    oneof message {
+        RbpMsg_Req req = 4;
+        RbpMsg_Res res = 5;
+        RbpMsg_Ind ind = 6;
+    }
+}
+
+//请求
+message RbpMsg_Req {
+    required int32 total = 1;
+    optional int32 sn = 2;
+    optional bytes val = 3;
+}
+
+//响应
+message RbpMsg_Res {
+    required int32 total = 1;
+    required int32 sn = 2;
+    required int32 code = 3; //错误码, 0:success
+    optional bytes val = 4;
+}
+
+//Indication:单向数据，不需响应
+message RbpMsg_Ind {
+    required int32 total = 1;
+    optional int32 sn = 2;
+    optional bytes val = 3;
+}
+message RbpMsg_Int32 {
+    required int32 val = 1;
+}
+
+

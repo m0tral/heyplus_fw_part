@@ -1,0 +1,42 @@
+// Ryeex BLE protocol
+
+syntax = "proto2";
+
+option java_package = "com.ryeex.groot.frame.ble.stack.pb.entity";
+
+option java_outer_classname = "Device";
+
+enum ACTIVATE_STATUS {
+    STATUS_UNACTIVATE = 0;
+    STATUS_ACTIVATE = 1;
+}
+
+enum BIND_STATUS {
+    STATUS_UNBIND = 0;
+    STATUS_BIND = 1;
+}
+
+message DeviceStatus {
+    required string did = 1;
+    required ACTIVATE_STATUS act_status = 2;
+    required BIND_STATUS bind_status = 3;
+}
+
+message DeviceInfo {
+    required string did = 1;
+    required bytes mac = 2;
+    required string model = 3;
+    required string fw_ver = 4;
+    required string uid = 5;
+}
+
+message DeviceConfig {
+    required int32 big_max = 1; //RbpMsg_Big中val最大容量，单位byte
+}
+
+message Certificate {
+    required bytes cert = 1;
+    required int32 sn = 2;
+    required bytes sign = 3;
+    required int32 sign_ver = 4;
+}

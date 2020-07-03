@@ -1,0 +1,780 @@
+<?xml version="1.0" encoding="utf-16"?>
+<CyBleConfiguration_T2 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="1.00">
+  <OperationMode>Profile</OperationMode>
+  <CyProfile ID="1" DisplayName="GATT" Name="GATT" Type="org.bluetooth.profile.custom">
+    <CyProfileRole ID="2" DisplayName="Server" Name="Server">
+      <CyService ID="3" DisplayName="Generic Access" Name="Generic Access" Type="org.bluetooth.service.generic_access" UUID="1800">
+        <CyCharacteristic ID="4" DisplayName="Device Name" Name="Device Name" Type="org.bluetooth.characteristic.gap.device_name" UUID="2A00">
+          <Field Name="Name">
+            <DataFormat>utf8s</DataFormat>
+            <ByteLength>4</ByteLength>
+            <FillRequirement>C1</FillRequirement>
+            <ValueType>BASIC</ValueType>
+            <GeneralValue>Sake</GeneralValue>
+            <ArrayValue />
+          </Field>
+          <Properties>
+            <Property Type="READ" Present="true" Mandatory="true" />
+            <Property Type="WRITE" Present="false" Mandatory="false" />
+          </Properties>
+          <Permission />
+        </CyCharacteristic>
+        <CyCharacteristic ID="5" DisplayName="Appearance" Name="Appearance" Type="org.bluetooth.characteristic.gap.appearance" UUID="2A01">
+          <Field Name="Category">
+            <DataFormat>16bit</DataFormat>
+            <ByteLength>2</ByteLength>
+            <FillRequirement>C1</FillRequirement>
+            <ValueType>ENUM</ValueType>
+            <EnumValue>192</EnumValue>
+            <ArrayValue />
+          </Field>
+          <Properties>
+            <Property Type="READ" Present="true" Mandatory="true" />
+          </Properties>
+          <Permission />
+        </CyCharacteristic>
+        <CyCharacteristic ID="6" DisplayName="Peripheral Preferred Connection Parameters" Name="Peripheral Preferred Connection Parameters" Type="org.bluetooth.characteristic.gap.peripheral_preferred_connection_parameters" UUID="2A04">
+          <Field Name="Minimum Connection Interval">
+            <DataFormat>uint16</DataFormat>
+            <ByteLength>2</ByteLength>
+            <Range>
+              <IsDeclared>true</IsDeclared>
+              <Minimum>6</Minimum>
+              <Maximum>3200</Maximum>
+            </Range>
+            <ValueType>BASIC</ValueType>
+            <GeneralValue>0x0006</GeneralValue>
+            <ArrayValue />
+          </Field>
+          <Field Name="Maximum Connection Interval">
+            <DataFormat>uint16</DataFormat>
+            <ByteLength>2</ByteLength>
+            <Range>
+              <IsDeclared>true</IsDeclared>
+              <Minimum>6</Minimum>
+              <Maximum>3200</Maximum>
+            </Range>
+            <ValueType>BASIC</ValueType>
+            <GeneralValue>0x0028</GeneralValue>
+            <ArrayValue />
+          </Field>
+          <Field Name="Slave Latency">
+            <DataFormat>uint16</DataFormat>
+            <ByteLength>2</ByteLength>
+            <Range>
+              <IsDeclared>true</IsDeclared>
+              <Minimum>0</Minimum>
+              <Maximum>499</Maximum>
+            </Range>
+            <ValueType>BASIC</ValueType>
+            <GeneralValue>0</GeneralValue>
+            <ArrayValue />
+          </Field>
+          <Field Name="Connection Supervision Timeout Multiplier">
+            <DataFormat>uint16</DataFormat>
+            <ByteLength>2</ByteLength>
+            <Range>
+              <IsDeclared>true</IsDeclared>
+              <Minimum>10</Minimum>
+              <Maximum>3200</Maximum>
+            </Range>
+            <ValueType>BASIC</ValueType>
+            <GeneralValue>0x03E8</GeneralValue>
+            <ArrayValue />
+          </Field>
+          <Properties>
+            <Property Type="READ" Present="true" Mandatory="true" />
+          </Properties>
+          <Permission />
+        </CyCharacteristic>
+        <CyCharacteristic ID="7" DisplayName="Central Address Resolution" Name="Central Address Resolution" Type="org.bluetooth.characteristic.gap.central_address_resolution" UUID="2AA6">
+          <Field Name="Central Address Resolution Support">
+            <DataFormat>uint8</DataFormat>
+            <ByteLength>1</ByteLength>
+            <ValueType>ENUM</ValueType>
+            <ArrayValue />
+          </Field>
+          <Properties>
+            <Property Type="READ" Present="true" Mandatory="true" />
+          </Properties>
+          <Permission />
+        </CyCharacteristic>
+        <CyCharacteristic ID="8" DisplayName="Resolvable Private Address Only" Name="Resolvable Private Address Only" Type="org.bluetooth.characteristic.gap.resolvable_private_address_only" UUID="2AC9">
+          <Field Name="Resolvable Private Address Only">
+            <DataFormat>uint8</DataFormat>
+            <ByteLength>1</ByteLength>
+            <ValueType>ENUM</ValueType>
+            <ArrayValue />
+          </Field>
+          <Properties>
+            <Property Type="READ" Present="true" Mandatory="true" />
+          </Properties>
+          <Permission />
+        </CyCharacteristic>
+        <Declaration>PrimarySingleInstance</Declaration>
+        <IncludedServices />
+      </CyService>
+      <CyService ID="9" DisplayName="Generic Attribute" Name="Generic Attribute" Type="org.bluetooth.service.generic_attribute" UUID="1801">
+        <CyCharacteristic ID="10" DisplayName="Service Changed" Name="Service Changed" Type="org.bluetooth.characteristic.gatt.service_changed" UUID="2A05">
+          <CyDescriptor ID="11" DisplayName="Client Characteristic Configuration" Name="Client Characteristic Configuration" Type="org.bluetooth.descriptor.gatt.client_characteristic_configuration" UUID="2902">
+            <Field Name="Properties">
+              <DataFormat>16bit</DataFormat>
+              <ByteLength>2</ByteLength>
+              <Range>
+                <IsDeclared>true</IsDeclared>
+                <Minimum>0</Minimum>
+                <Maximum>3</Maximum>
+              </Range>
+              <ValueType>BITFIELD</ValueType>
+              <Bit>
+                <Index>0</Index>
+                <Size>1</Size>
+                <Value>0</Value>
+                <Enumerations>
+                  <Enumeration key="0" value="Notifications disabled" />
+                  <Enumeration key="1" value="Notifications enabled" />
+                </Enumerations>
+              </Bit>
+              <Bit>
+                <Index>1</Index>
+                <Size>1</Size>
+                <Value>0</Value>
+                <Enumerations>
+                  <Enumeration key="0" value="Indications disabled" />
+                  <Enumeration key="1" value="Indications enabled" />
+                </Enumerations>
+              </Bit>
+              <ArrayValue />
+            </Field>
+            <Properties>
+              <Property Type="READ" Present="true" Mandatory="true" />
+              <Property Type="WRITE" Present="true" Mandatory="true" />
+            </Properties>
+            <Permission>
+              <AccessPermission>READ_WRITE</AccessPermission>
+            </Permission>
+          </CyDescriptor>
+          <Field Name="Start of Affected Attribute Handle Range">
+            <DataFormat>uint16</DataFormat>
+            <ByteLength>2</ByteLength>
+            <Range>
+              <IsDeclared>true</IsDeclared>
+              <Minimum>1</Minimum>
+              <Maximum>65535</Maximum>
+            </Range>
+            <ValueType>BASIC</ValueType>
+            <ArrayValue />
+          </Field>
+          <Field Name="End of Affected Attribute Handle Range">
+            <DataFormat>uint16</DataFormat>
+            <ByteLength>2</ByteLength>
+            <Range>
+              <IsDeclared>true</IsDeclared>
+              <Minimum>1</Minimum>
+              <Maximum>65535</Maximum>
+            </Range>
+            <ValueType>BASIC</ValueType>
+            <ArrayValue />
+          </Field>
+          <Properties>
+            <Property Type="INDICATE" Present="true" Mandatory="true" />
+          </Properties>
+          <Permission>
+            <AccessPermission>NONE</AccessPermission>
+          </Permission>
+        </CyCharacteristic>
+        <Declaration>PrimarySingleInstance</Declaration>
+        <IncludedServices />
+      </CyService>
+      <CyService ID="22" DisplayName="Heart Rate" Name="Heart Rate" Type="org.bluetooth.service.heart_rate" UUID="180D">
+        <CyCharacteristic ID="23" DisplayName="Heart Rate Measurement" Name="Heart Rate Measurement" Type="org.bluetooth.characteristic.heart_rate_measurement" UUID="2A37">
+          <CyDescriptor ID="24" DisplayName="Client Characteristic Configuration" Name="Client Characteristic Configuration" Type="org.bluetooth.descriptor.gatt.client_characteristic_configuration" UUID="2902">
+            <Field Name="Properties">
+              <DataFormat>16bit</DataFormat>
+              <ByteLength>2</ByteLength>
+              <Range>
+                <IsDeclared>true</IsDeclared>
+                <Minimum>0</Minimum>
+                <Maximum>3</Maximum>
+              </Range>
+              <ValueType>BITFIELD</ValueType>
+              <Bit>
+                <Index>0</Index>
+                <Size>1</Size>
+                <Value>0</Value>
+                <Enumerations>
+                  <Enumeration key="0" value="Notifications disabled" />
+                  <Enumeration key="1" value="Notifications enabled" />
+                </Enumerations>
+              </Bit>
+              <Bit>
+                <Index>1</Index>
+                <Size>1</Size>
+                <Value>0</Value>
+                <Enumerations>
+                  <Enumeration key="0" value="Indications disabled" />
+                  <Enumeration key="1" value="Indications enabled" />
+                </Enumerations>
+              </Bit>
+              <ArrayValue />
+            </Field>
+            <Properties>
+              <Property Type="READ" Present="true" Mandatory="true" />
+              <Property Type="WRITE" Present="true" Mandatory="true" />
+            </Properties>
+            <Permission>
+              <AccessPermission>READ_WRITE</AccessPermission>
+            </Permission>
+          </CyDescriptor>
+          <Field Name="Flags">
+            <DataFormat>8bit</DataFormat>
+            <ByteLength>1</ByteLength>
+            <ValueType>BITFIELD</ValueType>
+            <Bit>
+              <Name>Heart Rate Value Format bit</Name>
+              <Index>0</Index>
+              <Size>1</Size>
+              <Value>0</Value>
+              <Enumerations>
+                <Enumeration key="0" value="Heart Rate Value Format is set to UINT8" requires="C1" />
+                <Enumeration key="1" value="Heart Rate Value Format is set to UINT16" requires="C2" />
+              </Enumerations>
+            </Bit>
+            <Bit>
+              <Name>Sensor Contact Status bits</Name>
+              <Index>1</Index>
+              <Size>2</Size>
+              <Value>0</Value>
+              <Enumerations>
+                <Enumeration key="0" value="Sensor Contact feature is not supported in the current connection" />
+                <Enumeration key="1" value="Sensor Contact feature is not supported in the current connection" />
+                <Enumeration key="2" value="Sensor Contact feature is supported, but contact is not detected" />
+                <Enumeration key="3" value="Sensor Contact feature is supported and contact is detected" />
+              </Enumerations>
+            </Bit>
+            <Bit>
+              <Name>Energy Expended Status bit</Name>
+              <Index>3</Index>
+              <Size>1</Size>
+              <Value>0</Value>
+              <Enumerations>
+                <Enumeration key="0" value="Energy Expended field is not present" />
+                <Enumeration key="1" value="Energy Expended field is present" requires="C3" />
+              </Enumerations>
+            </Bit>
+            <Bit>
+              <Name>RR-Interval bit</Name>
+              <Index>4</Index>
+              <Size>1</Size>
+              <Value>0</Value>
+              <Enumerations>
+                <Enumeration key="0" value="RR-Interval values are not present" />
+                <Enumeration key="1" value="One or more RR-Interval values are present" requires="C4" />
+              </Enumerations>
+            </Bit>
+            <ArrayValue />
+          </Field>
+          <Field Name="Heart Rate Measurement Value">
+            <DataFormat>uint8</DataFormat>
+            <ByteLength>1</ByteLength>
+            <Unit>org.bluetooth.unit.period.beats_per_minute</Unit>
+            <ValueType>BASIC</ValueType>
+            <ArrayValue />
+          </Field>
+          <Field Name="Heart Rate Measurement Value">
+            <DataFormat>uint16</DataFormat>
+            <ByteLength>2</ByteLength>
+            <Unit>org.bluetooth.unit.period.beats_per_minute</Unit>
+            <ValueType>BASIC</ValueType>
+            <ArrayValue />
+          </Field>
+          <Field Name="Energy Expended">
+            <DataFormat>uint16</DataFormat>
+            <ByteLength>2</ByteLength>
+            <Unit>org.bluetooth.unit.energy.joule</Unit>
+            <ValueType>BASIC</ValueType>
+            <ArrayValue />
+          </Field>
+          <Field Name="RR-Interval">
+            <DataFormat>uint16</DataFormat>
+            <ByteLength>2</ByteLength>
+            <Unit>org.bluetooth.unit.time.second</Unit>
+            <ValueType>BASIC</ValueType>
+            <ArrayValue />
+          </Field>
+          <Properties>
+            <Property Type="NOTIFY" Present="true" Mandatory="true" />
+          </Properties>
+          <Permission>
+            <AccessPermission>NONE</AccessPermission>
+          </Permission>
+        </CyCharacteristic>
+        <CyCharacteristic ID="25" DisplayName="Body Sensor Location" Name="Body Sensor Location" Type="org.bluetooth.characteristic.body_sensor_location" UUID="2A38">
+          <Field Name="Body Sensor Location">
+            <DataFormat>8bit</DataFormat>
+            <ByteLength>1</ByteLength>
+            <ValueType>ENUM</ValueType>
+            <ArrayValue />
+          </Field>
+          <Properties>
+            <Property Type="READ" Present="true" Mandatory="true" />
+          </Properties>
+          <Permission />
+        </CyCharacteristic>
+        <CyCharacteristic ID="26" DisplayName="Heart Rate Control Point" Name="Heart Rate Control Point" Type="org.bluetooth.characteristic.heart_rate_control_point" UUID="2A39">
+          <Field Name="Heart Rate Control Point">
+            <DataFormat>8bit</DataFormat>
+            <ByteLength>1</ByteLength>
+            <ValueType>ENUM</ValueType>
+            <EnumValue>1</EnumValue>
+            <ArrayValue />
+          </Field>
+          <Properties>
+            <Property Type="WRITE" Present="true" Mandatory="true" />
+          </Properties>
+          <Permission>
+            <AccessPermission>WRITE</AccessPermission>
+          </Permission>
+        </CyCharacteristic>
+        <Declaration>Primary</Declaration>
+        <IncludedServices />
+      </CyService>
+      <CyService ID="27" DisplayName="Mi Service" Name="Custom Service" Type="org.bluetooth.service.custom" UUID="FE95">
+        <CyCharacteristic ID="28" DisplayName="Token" Name="Custom Characteristic" Type="org.bluetooth.characteristic.custom" UUID="0001">
+          <CyDescriptor ID="30" DisplayName="Client Characteristic Configuration" Name="Client Characteristic Configuration" Type="org.bluetooth.descriptor.gatt.client_characteristic_configuration" UUID="2902">
+            <Field Name="Properties">
+              <DataFormat>16bit</DataFormat>
+              <ByteLength>2</ByteLength>
+              <Range>
+                <IsDeclared>true</IsDeclared>
+                <Minimum>0</Minimum>
+                <Maximum>3</Maximum>
+              </Range>
+              <ValueType>BITFIELD</ValueType>
+              <Bit>
+                <Index>0</Index>
+                <Size>1</Size>
+                <Value>0</Value>
+                <Enumerations>
+                  <Enumeration key="0" value="Notifications disabled" />
+                  <Enumeration key="1" value="Notifications enabled" />
+                </Enumerations>
+              </Bit>
+              <Bit>
+                <Index>1</Index>
+                <Size>1</Size>
+                <Value>0</Value>
+                <Enumerations>
+                  <Enumeration key="0" value="Indications disabled" />
+                  <Enumeration key="1" value="Indications enabled" />
+                </Enumerations>
+              </Bit>
+              <ArrayValue />
+            </Field>
+            <Properties>
+              <Property Type="READ" Present="true" Mandatory="false" />
+              <Property Type="WRITE" Present="true" Mandatory="false" />
+            </Properties>
+            <Permission>
+              <AccessPermission>READ_WRITE</AccessPermission>
+            </Permission>
+          </CyDescriptor>
+          <Field Name="New field">
+            <DataFormat>uint8[]</DataFormat>
+            <ByteLength>12</ByteLength>
+            <ValueType>ARRAY</ValueType>
+            <ArrayValue />
+          </Field>
+          <Properties>
+            <Property Type="BROADCAST" Present="false" Mandatory="false" />
+            <Property Type="READ" Present="true" Mandatory="false" />
+            <Property Type="WRITE" Present="true" Mandatory="false" />
+            <Property Type="WRITE_WITHOUT_RESPONSE" Present="false" Mandatory="false" />
+            <Property Type="NOTIFY" Present="true" Mandatory="false" />
+            <Property Type="INDICATE" Present="false" Mandatory="false" />
+            <Property Type="AUTHENTICATED_SIGNED_WRITES" Present="false" Mandatory="false" />
+            <Property Type="RELIABLE_WRITE" Present="false" Mandatory="false" />
+            <Property Type="WRITABLE_AUXILIARIES" Present="false" Mandatory="false" />
+          </Properties>
+          <Permission>
+            <AccessPermission>READ_WRITE</AccessPermission>
+          </Permission>
+        </CyCharacteristic>
+        <CyCharacteristic ID="31" DisplayName="ProductId" Name="Custom Characteristic" Type="org.bluetooth.characteristic.custom" UUID="0002">
+          <Field Name="New field">
+            <DataFormat>uint16</DataFormat>
+            <ByteLength>2</ByteLength>
+            <ValueType>BASIC</ValueType>
+            <ArrayValue />
+          </Field>
+          <Properties>
+            <Property Type="BROADCAST" Present="false" Mandatory="false" />
+            <Property Type="READ" Present="true" Mandatory="false" />
+            <Property Type="WRITE" Present="false" Mandatory="false" />
+            <Property Type="WRITE_WITHOUT_RESPONSE" Present="false" Mandatory="false" />
+            <Property Type="NOTIFY" Present="false" Mandatory="false" />
+            <Property Type="INDICATE" Present="false" Mandatory="false" />
+            <Property Type="AUTHENTICATED_SIGNED_WRITES" Present="false" Mandatory="false" />
+            <Property Type="RELIABLE_WRITE" Present="false" Mandatory="false" />
+            <Property Type="WRITABLE_AUXILIARIES" Present="false" Mandatory="false" />
+          </Properties>
+          <Permission />
+        </CyCharacteristic>
+        <CyCharacteristic ID="33" DisplayName="Ver" Name="Custom Characteristic" Type="org.bluetooth.characteristic.custom" UUID="0004">
+          <Field Name="New field">
+            <DataFormat>uint8[]</DataFormat>
+            <ByteLength>20</ByteLength>
+            <ValueType>ARRAY</ValueType>
+            <ArrayValue />
+          </Field>
+          <Properties>
+            <Property Type="BROADCAST" Present="false" Mandatory="false" />
+            <Property Type="READ" Present="true" Mandatory="false" />
+            <Property Type="WRITE" Present="false" Mandatory="false" />
+            <Property Type="WRITE_WITHOUT_RESPONSE" Present="false" Mandatory="false" />
+            <Property Type="NOTIFY" Present="false" Mandatory="false" />
+            <Property Type="INDICATE" Present="false" Mandatory="false" />
+            <Property Type="AUTHENTICATED_SIGNED_WRITES" Present="false" Mandatory="false" />
+            <Property Type="RELIABLE_WRITE" Present="false" Mandatory="false" />
+            <Property Type="WRITABLE_AUXILIARIES" Present="false" Mandatory="false" />
+          </Properties>
+          <Permission />
+        </CyCharacteristic>
+        <CyCharacteristic ID="35" DisplayName="Auth" Name="Custom Characteristic" Type="org.bluetooth.characteristic.custom" UUID="0010">
+          <CyDescriptor ID="37" DisplayName="Client Characteristic Configuration" Name="Client Characteristic Configuration" Type="org.bluetooth.descriptor.gatt.client_characteristic_configuration" UUID="2902">
+            <Field Name="Properties">
+              <DataFormat>16bit</DataFormat>
+              <ByteLength>2</ByteLength>
+              <Range>
+                <IsDeclared>true</IsDeclared>
+                <Minimum>0</Minimum>
+                <Maximum>3</Maximum>
+              </Range>
+              <ValueType>BITFIELD</ValueType>
+              <Bit>
+                <Index>0</Index>
+                <Size>1</Size>
+                <Value>0</Value>
+                <Enumerations>
+                  <Enumeration key="0" value="Notifications disabled" />
+                  <Enumeration key="1" value="Notifications enabled" />
+                </Enumerations>
+              </Bit>
+              <Bit>
+                <Index>1</Index>
+                <Size>1</Size>
+                <Value>0</Value>
+                <Enumerations>
+                  <Enumeration key="0" value="Indications disabled" />
+                  <Enumeration key="1" value="Indications enabled" />
+                </Enumerations>
+              </Bit>
+              <ArrayValue />
+            </Field>
+            <Properties>
+              <Property Type="READ" Present="true" Mandatory="false" />
+              <Property Type="WRITE" Present="true" Mandatory="false" />
+            </Properties>
+            <Permission>
+              <AccessPermission>READ_WRITE</AccessPermission>
+            </Permission>
+          </CyDescriptor>
+          <Field Name="New field">
+            <DataFormat>uint8[]</DataFormat>
+            <ByteLength>4</ByteLength>
+            <ValueType>ARRAY</ValueType>
+            <ArrayValue />
+          </Field>
+          <Properties>
+            <Property Type="BROADCAST" Present="false" Mandatory="false" />
+            <Property Type="READ" Present="true" Mandatory="false" />
+            <Property Type="WRITE" Present="true" Mandatory="false" />
+            <Property Type="WRITE_WITHOUT_RESPONSE" Present="false" Mandatory="false" />
+            <Property Type="NOTIFY" Present="true" Mandatory="false" />
+            <Property Type="INDICATE" Present="false" Mandatory="false" />
+            <Property Type="AUTHENTICATED_SIGNED_WRITES" Present="false" Mandatory="false" />
+            <Property Type="RELIABLE_WRITE" Present="false" Mandatory="false" />
+            <Property Type="WRITABLE_AUXILIARIES" Present="false" Mandatory="false" />
+          </Properties>
+          <Permission>
+            <AccessPermission>READ_WRITE</AccessPermission>
+          </Permission>
+        </CyCharacteristic>
+        <CyCharacteristic ID="38" DisplayName="SN" Name="Custom Characteristic" Type="org.bluetooth.characteristic.custom" UUID="0013">
+          <Field Name="New field">
+            <DataFormat>uint8[]</DataFormat>
+            <ByteLength>20</ByteLength>
+            <ValueType>ARRAY</ValueType>
+            <ArrayValue />
+          </Field>
+          <Properties>
+            <Property Type="BROADCAST" Present="false" Mandatory="false" />
+            <Property Type="READ" Present="true" Mandatory="false" />
+            <Property Type="WRITE" Present="true" Mandatory="false" />
+            <Property Type="WRITE_WITHOUT_RESPONSE" Present="false" Mandatory="false" />
+            <Property Type="NOTIFY" Present="false" Mandatory="false" />
+            <Property Type="INDICATE" Present="false" Mandatory="false" />
+            <Property Type="AUTHENTICATED_SIGNED_WRITES" Present="false" Mandatory="false" />
+            <Property Type="RELIABLE_WRITE" Present="false" Mandatory="false" />
+            <Property Type="WRITABLE_AUXILIARIES" Present="false" Mandatory="false" />
+          </Properties>
+          <Permission>
+            <AccessPermission>READ_WRITE</AccessPermission>
+          </Permission>
+        </CyCharacteristic>
+        <CyCharacteristic ID="40" DisplayName="BeaconKey" Name="Custom Characteristic" Type="org.bluetooth.characteristic.custom" UUID="0014">
+          <Field Name="New field">
+            <DataFormat>uint8[]</DataFormat>
+            <ByteLength>20</ByteLength>
+            <ValueType>ARRAY</ValueType>
+            <ArrayValue />
+          </Field>
+          <Properties>
+            <Property Type="BROADCAST" Present="false" Mandatory="false" />
+            <Property Type="READ" Present="true" Mandatory="false" />
+            <Property Type="WRITE" Present="true" Mandatory="false" />
+            <Property Type="WRITE_WITHOUT_RESPONSE" Present="false" Mandatory="false" />
+            <Property Type="NOTIFY" Present="false" Mandatory="false" />
+            <Property Type="INDICATE" Present="false" Mandatory="false" />
+            <Property Type="AUTHENTICATED_SIGNED_WRITES" Present="false" Mandatory="false" />
+            <Property Type="RELIABLE_WRITE" Present="false" Mandatory="false" />
+            <Property Type="WRITABLE_AUXILIARIES" Present="false" Mandatory="false" />
+          </Properties>
+          <Permission>
+            <AccessPermission>READ_WRITE</AccessPermission>
+          </Permission>
+        </CyCharacteristic>
+        <Declaration>Primary</Declaration>
+        <IncludedServices />
+      </CyService>
+      <CyService ID="41" DisplayName="Ryeex Service" Name="Custom Service" Type="org.bluetooth.service.custom" UUID="B167">
+        <CyCharacteristic ID="42" DisplayName="Reliable_Data" Name="Custom Characteristic" Type="org.bluetooth.characteristic.custom" UUID="AA00">
+          <CyDescriptor ID="44" DisplayName="Client Characteristic Configuration" Name="Client Characteristic Configuration" Type="org.bluetooth.descriptor.gatt.client_characteristic_configuration" UUID="2902">
+            <Field Name="Properties">
+              <DataFormat>16bit</DataFormat>
+              <ByteLength>2</ByteLength>
+              <Range>
+                <IsDeclared>true</IsDeclared>
+                <Minimum>0</Minimum>
+                <Maximum>3</Maximum>
+              </Range>
+              <ValueType>BITFIELD</ValueType>
+              <Bit>
+                <Index>0</Index>
+                <Size>1</Size>
+                <Value>0</Value>
+                <Enumerations>
+                  <Enumeration key="0" value="Notifications disabled" />
+                  <Enumeration key="1" value="Notifications enabled" />
+                </Enumerations>
+              </Bit>
+              <Bit>
+                <Index>1</Index>
+                <Size>1</Size>
+                <Value>0</Value>
+                <Enumerations>
+                  <Enumeration key="0" value="Indications disabled" />
+                  <Enumeration key="1" value="Indications enabled" />
+                </Enumerations>
+              </Bit>
+              <ArrayValue />
+            </Field>
+            <Properties>
+              <Property Type="READ" Present="true" Mandatory="false" />
+              <Property Type="WRITE" Present="true" Mandatory="false" />
+            </Properties>
+            <Permission>
+              <AccessPermission>READ_WRITE</AccessPermission>
+            </Permission>
+          </CyDescriptor>
+          <Field Name="New field">
+            <DataFormat>uint8[]</DataFormat>
+            <ByteLength>20</ByteLength>
+            <ValueType>ARRAY</ValueType>
+            <ArrayValue />
+          </Field>
+          <Properties>
+            <Property Type="BROADCAST" Present="false" Mandatory="false" />
+            <Property Type="READ" Present="false" Mandatory="false" />
+            <Property Type="WRITE" Present="true" Mandatory="false" />
+            <Property Type="WRITE_WITHOUT_RESPONSE" Present="true" Mandatory="false" />
+            <Property Type="NOTIFY" Present="true" Mandatory="false" />
+            <Property Type="INDICATE" Present="false" Mandatory="false" />
+            <Property Type="AUTHENTICATED_SIGNED_WRITES" Present="false" Mandatory="false" />
+            <Property Type="RELIABLE_WRITE" Present="false" Mandatory="false" />
+            <Property Type="WRITABLE_AUXILIARIES" Present="false" Mandatory="false" />
+          </Properties>
+          <Permission>
+            <AccessPermission>WRITE</AccessPermission>
+          </Permission>
+        </CyCharacteristic>
+        <Declaration>Primary</Declaration>
+        <IncludedServices />
+      </CyService>
+      <RoleType>SERVER</RoleType>
+    </CyProfileRole>
+    <ClientInstCount>0</ClientInstCount>
+  </CyProfile>
+  <GapConfiguration>
+    <DeviceAddress>00A050000000</DeviceAddress>
+    <SiliconGeneratedAddress>false</SiliconGeneratedAddress>
+    <MtuSize>23</MtuSize>
+    <MaxTxPayloadSize>27</MaxTxPayloadSize>
+    <MaxRxPayloadSize>27</MaxRxPayloadSize>
+    <TxPowerLevelConnection>0</TxPowerLevelConnection>
+    <TxPowerLevelAdvScan>0</TxPowerLevelAdvScan>
+    <Le2Mbps>false</Le2Mbps>
+    <LePing>false</LePing>
+    <TxPowerCalRetention>false</TxPowerCalRetention>
+    <SecurityConfig>
+      <SecurityMode>SECURITY_MODE_1</SecurityMode>
+      <SecurityLevel>NO_SECURITY</SecurityLevel>
+      <StrictPairing>false</StrictPairing>
+      <KeypressNotifications>false</KeypressNotifications>
+      <IOCapability>DISPLAY</IOCapability>
+      <PairingMethod>JUST_WORKS</PairingMethod>
+      <Bonding>BOND</Bonding>
+      <BondListSize>16</BondListSize>
+      <WhitelistSize>16</WhitelistSize>
+      <EnableLinkLayerPrivacy>false</EnableLinkLayerPrivacy>
+      <ResolvingListSize>16</ResolvingListSize>
+      <EncryptionKeySize>16</EncryptionKeySize>
+    </SecurityConfig>
+    <AdditionalSecurityConfigList />
+    <PeripheralConfigList>
+      <CyPeripheralConfiguration>
+        <Name>Peripheral configuration 0</Name>
+        <GapRole>PERIPHERAL</GapRole>
+        <AdvertisementConfig>
+          <AdvScanMode>FAST_CONNECTION</AdvScanMode>
+          <AdvFastScanInterval>
+            <Minimum>100</Minimum>
+            <Maximum>120</Maximum>
+          </AdvFastScanInterval>
+          <AdvReducedScanInterval>
+            <Minimum>1000</Minimum>
+            <Maximum>1000</Maximum>
+          </AdvReducedScanInterval>
+          <AdvDiscoveryMode>LIMITED</AdvDiscoveryMode>
+          <AdvType>CONNECTABLE_UNDIRECTED</AdvType>
+          <AdvFilterPolicy>SCAN_REQUEST_ANY_CONNECT_REQUEST_ANY</AdvFilterPolicy>
+          <AdvChannelMap>ALL</AdvChannelMap>
+          <AdvFastTimeout>30</AdvFastTimeout>
+          <AdvReducedTimeout>150</AdvReducedTimeout>
+        </AdvertisementConfig>
+        <AdvertisementPacket>
+          <PacketType>ADVERTISEMENT</PacketType>
+          <Items>
+            <CyADStructure>
+              <ADType>1</ADType>
+              <ADData>05</ADData>
+            </CyADStructure>
+            <CyADStructure>
+              <ADType>9</ADType>
+              <ADData>53:61:6B:65</ADData>
+            </CyADStructure>
+            <CyADStructure>
+              <ADType>22</ADType>
+              <ADData>95:FE:31:20:9C:00:00:00:A0:50:00:00:00:09</ADData>
+            </CyADStructure>
+            <CyADStructure>
+              <ADType>25</ADType>
+              <ADData>C0:00</ADData>
+            </CyADStructure>
+          </Items>
+          <IncludedServicesServiceUuid />
+          <IncludedServicesServiceSolicitation />
+          <IncludedServicesServiceData>
+            <int>27</int>
+          </IncludedServicesServiceData>
+        </AdvertisementPacket>
+        <ScanResponsePacket>
+          <PacketType>SCAN_RESPONSE</PacketType>
+          <Items />
+          <IncludedServicesServiceUuid />
+          <IncludedServicesServiceSolicitation />
+          <IncludedServicesServiceData />
+        </ScanResponsePacket>
+      </CyPeripheralConfiguration>
+    </PeripheralConfigList>
+    <CentralConfigList />
+    <BroadcasterConfigList />
+    <ObserverConfigList />
+    <MixedPeripheralBroadcasterConfigList>
+      <CyPeripheralConfiguration>
+        <Name>Peripheral configuration 0</Name>
+        <GapRole>PERIPHERAL</GapRole>
+        <AdvertisementConfig>
+          <AdvScanMode>FAST_CONNECTION</AdvScanMode>
+          <AdvFastScanInterval>
+            <Minimum>100</Minimum>
+            <Maximum>120</Maximum>
+          </AdvFastScanInterval>
+          <AdvReducedScanInterval>
+            <Minimum>1000</Minimum>
+            <Maximum>1000</Maximum>
+          </AdvReducedScanInterval>
+          <AdvDiscoveryMode>LIMITED</AdvDiscoveryMode>
+          <AdvType>CONNECTABLE_UNDIRECTED</AdvType>
+          <AdvFilterPolicy>SCAN_REQUEST_ANY_CONNECT_REQUEST_ANY</AdvFilterPolicy>
+          <AdvChannelMap>ALL</AdvChannelMap>
+          <AdvFastTimeout>30</AdvFastTimeout>
+          <AdvReducedTimeout>150</AdvReducedTimeout>
+        </AdvertisementConfig>
+        <AdvertisementPacket>
+          <PacketType>ADVERTISEMENT</PacketType>
+          <Items>
+            <CyADStructure>
+              <ADType>1</ADType>
+              <ADData>05</ADData>
+            </CyADStructure>
+            <CyADStructure>
+              <ADType>9</ADType>
+              <ADData>53:61:6B:65</ADData>
+            </CyADStructure>
+            <CyADStructure>
+              <ADType>22</ADType>
+              <ADData>95:FE:31:20:9C:00:00:00:A0:50:00:00:00:09</ADData>
+            </CyADStructure>
+            <CyADStructure>
+              <ADType>25</ADType>
+              <ADData>C0:00</ADData>
+            </CyADStructure>
+          </Items>
+          <IncludedServicesServiceUuid />
+          <IncludedServicesServiceSolicitation />
+          <IncludedServicesServiceData>
+            <int>27</int>
+          </IncludedServicesServiceData>
+        </AdvertisementPacket>
+        <ScanResponsePacket>
+          <PacketType>SCAN_RESPONSE</PacketType>
+          <Items />
+          <IncludedServicesServiceUuid />
+          <IncludedServicesServiceSolicitation />
+          <IncludedServicesServiceData />
+        </ScanResponsePacket>
+      </CyPeripheralConfiguration>
+    </MixedPeripheralBroadcasterConfigList>
+    <MixedCentralObserverConfigList />
+    <GapRoles>
+      <CyEGapRole>PERIPHERAL</CyEGapRole>
+    </GapRoles>
+  </GapConfiguration>
+  <L2capConfiguration>
+    <NumChannels>1</NumChannels>
+    <NumPsm>1</NumPsm>
+    <MtuSize>23</MtuSize>
+    <MpsSize>23</MpsSize>
+    <L2capEnabled>true</L2capEnabled>
+  </L2capConfiguration>
+  <AdvancedConfiguration>
+    <UseDeepSleep>true</UseDeepSleep>
+    <EnablePaLnaOutput>false</EnablePaLnaOutput>
+    <EnablePaTxOutput>false</EnablePaTxOutput>
+    <EnableLnaRxOutput>false</EnableLnaRxOutput>
+  </AdvancedConfiguration>
+  <ConnectionCount>4</ConnectionCount>
+  <CpuCore>ReleaseMode_CM0p</CpuCore>
+  <HciContrCore>CortexM0p</HciContrCore>
+</CyBleConfiguration_T2>

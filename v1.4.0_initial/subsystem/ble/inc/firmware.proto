@@ -1,0 +1,24 @@
+// Ryeex BLE protocol
+
+syntax = "proto2";
+
+option java_package = "com.ryeex.groot.frame.ble.stack.pb.entity";
+
+option java_outer_classname = "Firmware";
+
+message FwUpdateInfo {
+    required string version = 1; //最新的固件版本号
+    required bool force = 2; //是否强制更新
+    repeated FwUpdateItem items = 3; //需要更新的固件项
+}
+
+message FwUpdateItem {
+    required int32 fw_id = 1; //固件id
+    required int32 num = 2; //分包个数
+}
+
+message FwUpdateData {
+    required int32 fw_id = 1; //固件id
+    required int32 sn = 2; //数据包序列号
+    required bytes val = 3; //具体数据
+}

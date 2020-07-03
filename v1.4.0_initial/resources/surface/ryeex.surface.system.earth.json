@@ -1,0 +1,20 @@
+{
+    "id":1,
+    "name":"ryeex.system.redarrow",
+    "author":"ryeex",
+    "version":1,
+
+    "bg_pic":{"size":342342, "name":"redarrow.png"},
+    "bg_color":343432,
+
+    "item":[
+        {"month":{"x":120, "y":120, "font":{"type":1, "size":20, "color":34738473}}},
+        {"day":{"x":120, "y":120, "font":{"type":1, "size":20, "color":34738473}}},
+        {"hour":{"x":120, "y":120, "font":{"type":1, "size":20, "color":34738473}}},
+        {"min":{"x":120, "y":120, "font":{"type":1, "size":20, "color":34738473}}},
+        {"dayofweek":{"x":120, "y":120, "font":{"type":1, "size":20, "color":34738473}}},
+        {"step":{"x":120, "y":120, "font":{"type":1, "size":20, "color":34738473}}},
+        {"cal":{"x":120, "y":120, "font":{"type":1, "size":20, "color":34738473}}},
+        {"lastHR":{"x":120, "y":120, "font":{"type":1, "size":20, "color":34738473}}}
+    ]
+}

@@ -1,0 +1,70 @@
+// Ryeex BLE protocol, fitness and health part.
+
+syntax = "proto2";
+
+enum FH_TYPE {
+    PEDOMETER      = 0; // fixed length, 6 bytes 
+    RUNNING        = 1; // fixed length
+    HEART_RATE     = 2; // string, max 50 bytes. (eg. "ryeex.band.sake.v1")
+    SLEEP          = 3; // string, max 20 bytes 
+    SWIMING        = 4; // string, (eg.  "1.0.0")
+    RIDING         = 5; // uint16, percent
+}
+
+
+enum FH_SUB_TYPE {
+    INSTANT        = 0; // 
+    DETAIL         = 1; // 
+    HISTORY        = 2; // 
+    RAW            = 3; // raw sensor data. for algorithm.
+    PARAMETERS     = 4; // parameter setting from APP/PC
+}
+
+
+message PedoDetail {
+    required int32       steps     = 1; // Steps in one session.
+    required int32       starttime = 2; // Session start time.
+    required int32       endtime   = 3; // Session end time.
+}
+
+message PedoRaw {
+    required int32       x = 1;
+    required int32       y = 2;
+    required int32       z = 3;
+    required int32       time = 4;
+}
+
+///////////////////////////////////////////////////////////////////
+
+message FitHealthMsg_PedoInst {
+    required FH_TYPE type = 1;
+    required FH_SUB_TYPE subtype = 2;
+    required int32   steps = 3; // Steps in current day.
+}
+
+
+message FitHealthMsg_PedoDetail {
+    required FH_TYPE     type      = 1;
+    required FH_SUB_TYPE subtype   = 2;
+    required PedoDetail  detail    = 3;
+}
+
+
+message FitHealthMsg_PedoHistory {
+    required FH_TYPE     type      = 1;
+    required FH_SUB_TYPE subtype   = 2;
+    repeated PedoDetail  details   = 3;
+}
+
+message FitHealthMsg_PedoRaw {
+    required FH_TYPE     type      = 1;
+    required FH_SUB_TYPE subtype   = 2;
+    repeated PedoRaw     detail    = 3;
+}
+
+
+message FitHealthMsg {
+    required FH_TYPE     type      = 1;
+    required FH_SUB_TYPE subtype   = 2;
+    optional bytes       val       = 3;
+}
